@@ -1,3 +1,4 @@
+
 export const DefaultRoute = 'ClickMenu/EntityList';
 
 export const Menus: Menu[] = [

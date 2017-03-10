@@ -25,3 +25,4 @@ interface Window {
 
 declare var window: Window;
 declare const Root: string;
+declare const Package: string;
