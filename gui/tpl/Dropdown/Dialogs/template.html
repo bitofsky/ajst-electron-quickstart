@@ -1,0 +1,126 @@
+<div class="container">
+    <section class="section" id="dialogs">
+        <header class="section-header row">
+            <h1 class="section-title col-xs-24">
+                <a href="#dialogs" class="">Dialogs</a>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-xs-24">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg no-outline" data-toggle="modal" data-target="#modal-sample">
+                        Launch demo dialog
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-sample-alt">
+                        Launch dialog in alt theme
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal modal-center-vertical" id="modal-sample" tabindex="-1" role="dialog" aria-labelledby="modal-sample-label"
+            aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-sample-label">Dialog title</h4>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        nulla pariatur.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Button</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal modal-center-vertical theme-alt" id="modal-sample-alt" tabindex="-1" role="dialog" aria-labelledby="modal-sample-label"
+            aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-sample-label">Dialog in alt theme</h4>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <p>Example with a button to launch the dialog:</p>
+
+                <pre><code class="language-xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"btn-group"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">class</span>=<span class="value">"btn btn-primary btn-lg"</span>
+                <span class="attribute">data-toggle</span>=<span class="value">"modal"</span>
+                <span class="attribute">data-target</span>=<span class="value">"#modal-sample"</span>&gt;</span>
+            Launch demo dialog
+        <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre>
+
+                <p>Launching the dialog with the <a href="http://getbootstrap.com/javascript/#modals-methods" target="_blank">JavaScript API</a>:</p>
+
+                <pre><code class="language-javascript">$(<span class="string">'#modal-sample'</span>).modal(<span class="string">'show'</span>);</code></pre>
+
+                <p>Closing the dialog with the <a href="http://getbootstrap.com/javascript/#modals-methods" target="_blank">JavaScript API</a>:</p>
+
+                <pre><code class="language-javascript">$(<span class="string">'#modal-sample'</span>).modal(<span class="string">'hide'</span>);</code></pre>
+            </div>
+
+            <div class="col-md-14">
+                <p>By default the dialog is already in the DOM:</p>
+
+                <pre><code class="language-xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal"</span> <span class="attribute">id</span>=<span class="value">"modal-sample"</span>
+         <span class="attribute">tabindex</span>=<span class="value">"-1"</span> <span class="attribute">role</span>=<span class="value">"dialog"</span>
+         <span class="attribute">aria-labelledby</span>=<span class="value">"modal-sample-label"</span> <span class="attribute">aria-hidden</span>=<span class="value">"true"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-dialog"</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-content"</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-header"</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">h4</span> <span class="attribute">class</span>=<span class="value">"modal-title"</span> <span class="attribute">id</span>=<span class="value">"modal-sample-label"</span>&gt;</span>
+                        Dialog title
+                    <span class="tag">&lt;/<span class="title">h4</span>&gt;</span>
+                <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-body"</span>&gt;</span>
+                    Lorem ipsum dolor sit amet.
+                <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-footer"</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">class</span>=<span class="value">"btn btn-primary"</span>&gt;</span>
+                        Button
+                    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">class</span>=<span class="value">"btn btn-info"</span>
+                            <span class="attribute">data-dismiss</span>=<span class="value">"modal"</span>&gt;</span>
+                        Cancel
+                    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+                <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+            <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre>
+
+                <div class="guidance guidance-usage m-t-xs">
+                    <ul>
+                        <li>The following theme classes can be applied to the <code>&lt;div class="modal"&gt;</code> tag: <code>.theme-default</code>                            or <code>.theme-alt</code>.</li>
+                        <li>Add the <code>.modal-center-vertical</code> class to the <code>&lt;div class="modal"&gt;</code> tag
+                            in order to center the dialog vertically.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+</div>

@@ -1,0 +1,30 @@
+{
+  "name": "ajst-electron-quickstart",
+  "dependencies": {
+    "ajst": "^1.6.18",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "winstrap": "^0.5.11"
+  },
+  "main": "electron.js",
+  "scripts": {
+    "start": "node ./node_modules/electron/cli.js run.js",
+    "install": "./node_modules/.bin/tsc -p . && code ."
+  },
+  "devDependencies": {
+    "@types/electron": "^1.4.33",
+    "@types/jquery": "^2.0.40",
+    "electron": "<1.6.0",
+    "node-ipc": "^8.10.3",
+    "typescript": "^2.2.1",
+    "watch-glob": "^0.1.3"
+  },
+  "description": "AJST + Electron Quickstart",
+  "repository": {},
+  "license": "MIT",
+  "version": "0.1.0",
+  "ipc": {
+      "appspace": "ajst-electron-quickstart:",
+      "id": "autoreload"
+  }
+}

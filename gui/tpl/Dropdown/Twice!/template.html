@@ -1,0 +1,27 @@
+<? const {Menu, Sub} = data; ?>
+<div class="container" id="Twice">
+
+    <section class="section">
+        <header class="section-header row">
+            <h1 class="section-title col-xs-24">
+                <a href="javascript: void();" class="no-outline">Twice!</a>
+            </h1>
+        </header>
+
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <?Object.entries(Sub.extra).forEach(([title, youtube]) => {?>
+                    <li><a data-toggle="tab" data-target="#<?=youtube?>" data-youtube="<?=youtube?>"><?=title?></a></li>
+                <?});?>
+            </ul>
+
+            <div class="tab-content">
+                <?Object.entries(Sub.extra).forEach(([title, youtube]) => {?>
+                    <div class="tab-pane fluidMedia" id="<?=youtube?>"></div>
+                <?});?>
+            </div>
+
+        </div>
+    </section>
+
+</div>

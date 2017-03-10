@@ -1,0 +1,38 @@
+<script id="PageHeader/template" type="template">
+<?
+const {Menu, Sub} = data;
+const {name, html, children} = Menu;
+
+if( Sub ) Menu.children.forEach(oMenu => oMenu.isActive = oMenu === Sub);
+?>
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-24">
+                <h3><?=html || name?></h3>
+                <div class="progress-bar">
+                    <div class="progress-circle"></div>
+                    <div class="progress-circle"></div>
+                    <div class="progress-circle"></div>
+                    <div class="progress-circle"></div>
+                    <div class="progress-circle"></div>
+                </div>
+                <ul class="nav nav-pills" data-scroll="smooth">
+                    <?(children || []).forEach(Sub => include('PageHeader/template.sub', {Menu, Sub}))?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</script>
+
+<script id="PageHeader/template.sub" type="template">
+<?
+const {Menu, Sub} = data;
+const {name, html, href, isActive} = Sub;
+const tag = html || name;
+?>
+<li role="presentation"><a href="<?=href?>"><?=isActive ? `<u>${tag}</u>` : tag?></a></li>
+</script>
