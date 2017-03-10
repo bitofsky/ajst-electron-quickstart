@@ -19,11 +19,11 @@ let win;
 exports.createWindow = () => {
     if (win)
         return;
-    // Create the browser window.
+    // Create the renderer window.
     win = new electron_1.BrowserWindow({ width: 1400, height: 800, frame: false, minWidth: 400 });
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, '../browser/tpl/index.html'),
+        pathname: path.join(__dirname, '../renderer/tpl/index.html'),
         protocol: 'file:',
         slashes: true
     }));

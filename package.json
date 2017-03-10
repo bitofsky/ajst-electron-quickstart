@@ -9,7 +9,8 @@
   "main": "electron.js",
   "scripts": {
     "start": "node ./node_modules/electron/cli.js run.js",
-    "install": "./node_modules/.bin/tsc -p . && code ."
+    "build": "./node_modules/.bin/tsc -p .",
+    "install": "npm run build && code ."
   },
   "devDependencies": {
     "@types/electron": "^1.4.33",

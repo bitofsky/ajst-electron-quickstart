@@ -55,7 +55,7 @@ export const electronStart = (enableElectron: boolean, enableWatch: boolean) => 
 
         if (enableWatch) {
             const watchGlob = require('watch-glob');
-            watchGlob(['tsconfig.json', 'electrom/**/*.ts', 'browser/**/!(*.js|*.map)'], { delay: 100 }, execute, execute);
+            watchGlob(['tsconfig.json', 'main/**/*.ts', 'renderer/**/!(*.js|*.map)'], { delay: 100 }, execute, execute);
         }
 
         if (enableElectron) {
