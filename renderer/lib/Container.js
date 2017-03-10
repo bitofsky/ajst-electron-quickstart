@@ -9,34 +9,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Lib_1 = require("./Lib");
-const Router_1 = require("./Router");
 const Config_1 = require("../Config");
-var Container;
-(function (Container) {
-    /**
-     * Document Body initialize
-     */
-    Container.initBody = () => __awaiter(this, void 0, void 0, function* () {
-        yield Promise.all([
-            Container.TopNavigation()
-        ]);
-        yield Router_1.Router(location.hash.replace(/^#/, ''));
+/**
+ * Document Body initialize
+ */
+exports.Body = () => __awaiter(this, void 0, void 0, function* () {
+    yield Promise.all([
+        exports.TopNavigation()
+    ]);
+    yield exports.MainContainer(location.hash.replace(/^#/, ''));
+});
+/**
+ * TopNavigation reder
+ */
+exports.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
+    yield Lib_1.TPL('TopNavigation', 'TopNavigation/template', Config_1.Menus);
+    // window control button's event
+    $('BODY').off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {
+        const $target = $(this);
+        switch (true) {
+            case $target.hasClass('close'): return Lib_1.close();
+            case $target.hasClass('maximize'): return Lib_1.maximize();
+            case $target.hasClass('minimize'): return Lib_1.minimize();
+            case $target.hasClass('devtools'): return Lib_1.toggleDevtools();
+        }
     });
-    /**
-     * TopNavigation
-     */
-    Container.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
-        yield Lib_1.TPL('TopNavigation', 'TopNavigation/template', Config_1.Menus);
-        // window control button's event
-        $('BODY').off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {
-            const $target = $(this);
-            switch (true) {
-                case $target.hasClass('close'): return Lib_1.close();
-                case $target.hasClass('maximize'): return Lib_1.maximize();
-                case $target.hasClass('minimize'): return Lib_1.minimize();
-                case $target.hasClass('devtools'): return Lib_1.toggleDevtools();
-            }
-        });
-    });
-})(Container = exports.Container || (exports.Container = {}));
+});
+/**
+ * MainContainer reder
+ */
+exports.MainContainer = (containerPath) => __awaiter(this, void 0, void 0, function* () {
+    containerPath = containerPath || Config_1.DefaultRoute;
+    const [sMenu, sSub] = containerPath.split('/');
+    const Menu = Config_1.Menus.find(({ name }) => name === sMenu);
+    if (!Menu)
+        return false; // invalid menu
+    const Sub = !Menu.children ? null : Menu.children.find(({ name }) => name === sSub);
+    yield Lib_1.TPL('MainContainer', 'PageHeader/template', { Menu, Sub }); // Page Header loading
+    if (Menu.template)
+        yield Lib_1.TPLAppend('MainContainer', Menu.template, { Menu, Sub }, { importJs: Menu.importJs });
+    else if (Sub && Sub.template)
+        yield Lib_1.TPLAppend('MainContainer', Sub.template, { Menu, Sub }, { importJs: Sub.importJs });
+});
 //# sourceMappingURL=Container.js.map

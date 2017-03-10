@@ -1,6 +1,5 @@
 import { flushCaches } from './Lib';
-import { Container } from './Container';
-import { Router } from './Router';
+import { Body, MainContainer } from './Container';
 
 flushCaches(); // ajst re-init cache
 
@@ -18,7 +17,7 @@ const $MainContainer = $('MainContainer');
 
 $window.off('hashchange').on('hashchange', (event) => {
     const routePath = location.hash.replace(/^#/, '');
-    Router(routePath); // open Menu/Sub
+    MainContainer(routePath); // open Menu/Sub
 });
 
 // Bootstrap bug? : position: fixed;로 탑네비를 고정시키면 특정 버튼 클릭시에 --webkit-app-region이 엉뚱한데로 셋팅되는 오류가 있어 MainContainer를 resize하는 방법으로 바꾼다.
@@ -34,4 +33,4 @@ $window.off('resize').on('resize', (event) => {
 
 });
 
-Container.initBody(); // App View Start
+Body(); // App View Start
