@@ -39,7 +39,7 @@ const ipcElectronConnect = (message: string) => {
             oIpcElectron.emit('message', message);
         }
     );
-}
+};
 
 const ipcElectronSend = (message: string) =>
     oIpcElectron ? oIpcElectron.emit('message', message) : ipcElectronConnect(message);
@@ -79,6 +79,6 @@ const enableWatch = process.argv.includes('watch');
 const exit = (err?: Error) => {
     err && console.error(err);
     process.exit();
-}
+};
 
 electronStart(enableElectron, enableWatch).then(() => exit()).catch(exit);
