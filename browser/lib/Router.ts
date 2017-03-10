@@ -1,5 +1,5 @@
-import { TPL, TPLAppend } from './lib/lib';
-import { Menus, DefaultRoute } from './config/menu';
+import { TPL, TPLAppend } from './Lib';
+import { Menus, DefaultRoute } from '../Config';
 
 /**
  * Router

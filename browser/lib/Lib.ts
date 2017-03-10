@@ -1,17 +1,17 @@
 import * as AJST from 'ajst';
-import * as $ from 'jquery';
 import * as path from 'path';
 import * as fs from 'fs';
 import { remote } from 'electron';
 
-export { $, AJST };
+export { AJST };
 
-// find GUI root directory
-const parentPath: string = path.resolve(__dirname + '/..');
-const importJsUrl = `${parentPath}/tpl/$id.js`;
+const $window = $(window);
+
+// find browser root directory
+const importJsUrl = `${Root}/$id.js`;
 
 // AJST default option
-AJST.option({ url: `tpl/$id.html`, importJs: false, importJsUrl });
+AJST.option({ url: `$id.html`, importJs: false, importJsUrl });
 
 const AJSTGet = async (selector: string, id: string, data?: any, option?: AJST.Option, isAppend = false) => {
 
@@ -23,6 +23,8 @@ const AJSTGet = async (selector: string, id: string, data?: any, option?: AJST.O
     const html = await AJST.get(id, data, option);
 
     isAppend ? $target.append(html) : $target.html(html);
+
+    $window.trigger('resize');
 
     if (!option.importJs && fs.existsSync(jsUrl)) {
         const mod = require(jsUrl);

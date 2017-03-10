@@ -8,35 +8,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const lib_1 = require("./lib/lib");
+const Lib_1 = require("./Lib");
 const Router_1 = require("./Router");
-const menu_1 = require("./config/menu");
-var GUI;
-(function (GUI) {
+const Config_1 = require("../Config");
+var Container;
+(function (Container) {
     /**
      * Document Body initialize
      */
-    GUI.initBody = () => __awaiter(this, void 0, void 0, function* () {
+    Container.initBody = () => __awaiter(this, void 0, void 0, function* () {
         yield Promise.all([
-            GUI.TopNavigation()
+            Container.TopNavigation()
         ]);
         yield Router_1.Router(location.hash.replace(/^#/, ''));
     });
     /**
      * TopNavigation
      */
-    GUI.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
-        yield lib_1.TPL('TopNavigation', 'TopNavigation/template', menu_1.Menus);
+    Container.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
+        yield Lib_1.TPL('TopNavigation', 'TopNavigation/template', Config_1.Menus);
         // window control button's event
         $('BODY').off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {
             const $target = $(this);
             switch (true) {
-                case $target.hasClass('close'): return lib_1.close();
-                case $target.hasClass('maximize'): return lib_1.maximize();
-                case $target.hasClass('minimize'): return lib_1.minimize();
-                case $target.hasClass('devtools'): return lib_1.toggleDevtools();
+                case $target.hasClass('close'): return Lib_1.close();
+                case $target.hasClass('maximize'): return Lib_1.maximize();
+                case $target.hasClass('minimize'): return Lib_1.minimize();
+                case $target.hasClass('devtools'): return Lib_1.toggleDevtools();
             }
         });
     });
-})(GUI = exports.GUI || (exports.GUI = {}));
-//# sourceMappingURL=GUI.js.map
+})(Container = exports.Container || (exports.Container = {}));
+//# sourceMappingURL=Container.js.map

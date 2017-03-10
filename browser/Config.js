@@ -1,20 +1,7 @@
-export interface Menu {
-    name: string;
-    html?: string;
-    href?: string;
-    right?: boolean;
-    children?: Menu[];
-    template?: string;
-    importJs?: boolean;
-    requireJs?: boolean;
-    dropdown?: boolean;
-    click?: () => Promise<false> | false | void;
-    extra?: any;
-}
-
-export const DefaultRoute = 'ClickMenu/EntityList';
-
-export const Menus: Menu[] = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DefaultRoute = 'ClickMenu/EntityList';
+exports.Menus = [
     {
         name: 'ClickMenu',
         dropdown: false,
@@ -55,7 +42,6 @@ export const Menus: Menu[] = [
                 name: 'Twice!',
                 href: '#Dropdown/Twice!',
                 template: 'Dropdown/Twice!/template',
-                requireJs: true,
                 extra: {
                     'KNOCK KNOCK': '8A2t_tAjMz8',
                     'TT': 'ePpPVE-GGJw',
@@ -65,3 +51,4 @@ export const Menus: Menu[] = [
         ]
     }
 ];
+//# sourceMappingURL=Config.js.map

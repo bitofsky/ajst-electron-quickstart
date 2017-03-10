@@ -1,8 +1,8 @@
-import { TPL, close, maximize, minimize, toggleDevtools } from './lib/lib';
+import { TPL, close, maximize, minimize, toggleDevtools } from './Lib';
 import { Router } from './Router';
-import { Menus } from './config/menu';
+import { Menus } from '../Config';
 
-export module GUI {
+export module Container {
 
     /**
      * Document Body initialize

@@ -18,7 +18,7 @@ export const createWindow = () => {
 
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, '../gui/index.html'),
+        pathname: path.join(__dirname, '../browser/tpl/index.html'),
         protocol: 'file:',
         slashes: true
     }));

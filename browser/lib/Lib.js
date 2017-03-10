@@ -10,16 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const AJST = require("ajst");
 exports.AJST = AJST;
-const $ = require("jquery");
-exports.$ = $;
-const path = require("path");
 const fs = require("fs");
 const electron_1 = require("electron");
-// find GUI root directory
-const parentPath = path.resolve(__dirname + '/..');
-const importJsUrl = `${parentPath}/tpl/$id.js`;
+const $window = $(window);
+// find browser root directory
+const importJsUrl = `${Root}/$id.js`;
 // AJST default option
-AJST.option({ url: `tpl/$id.html`, importJs: false, importJsUrl });
+AJST.option({ url: `$id.html`, importJs: false, importJsUrl });
 const AJSTGet = (selector, id, data, option, isAppend = false) => __awaiter(this, void 0, void 0, function* () {
     option = option || {};
     data = yield data;
@@ -27,6 +24,7 @@ const AJSTGet = (selector, id, data, option, isAppend = false) => __awaiter(this
     const $target = $(selector);
     const html = yield AJST.get(id, data, option);
     isAppend ? $target.append(html) : $target.html(html);
+    $window.trigger('resize');
     if (!option.importJs && fs.existsSync(jsUrl)) {
         const mod = require(jsUrl);
         const func = mod && typeof mod.default === 'function' ? mod.default : null;
@@ -49,4 +47,4 @@ exports.maximize = () => {
     const oBrowserWindow = getBrowserWindow();
     oBrowserWindow.isMaximized() ? oBrowserWindow.unmaximize() : oBrowserWindow.maximize();
 };
-//# sourceMappingURL=lib.js.map
+//# sourceMappingURL=Lib.js.map

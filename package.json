@@ -20,11 +20,14 @@
     "watch-glob": "^0.1.3"
   },
   "description": "AJST + Electron Quickstart",
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitofsky/ajst-electron-quickstart"
+  },
   "license": "MIT",
   "version": "0.1.0",
   "ipc": {
-      "appspace": "ajst-electron-quickstart:",
-      "id": "autoreload"
+    "appspace": "ajst-electron-quickstart:",
+    "id": "autoreload"
   }
 }

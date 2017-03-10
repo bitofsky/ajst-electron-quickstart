@@ -46,7 +46,7 @@ exports.electronStart = (enableElectron, enableWatch) => new Promise((resolve, r
         yield buildTsc(project); // init build
         if (enableWatch) {
             const watchGlob = require('watch-glob');
-            watchGlob(['tsconfig.json', 'electrom/**/*.ts', 'gui/**/!(*.js|*.map)'], { delay: 100 }, execute, execute);
+            watchGlob(['tsconfig.json', 'electrom/**/*.ts', 'browser/**/!(*.js|*.map)'], { delay: 100 }, execute, execute);
         }
         if (enableElectron) {
             const oSpawn = spawn('node', ['./node_modules/electron/cli.js', 'run.js', '--nolazy', enableWatch ? '--debug-brk' : ''], { stdio: 'inherit' });

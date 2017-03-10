@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DefaultRoute = 'ClickMenu/EntityList';
-exports.Menus = [
+export const DefaultRoute = 'ClickMenu/EntityList';
+
+export const Menus: Menu[] = [
     {
         name: 'ClickMenu',
         dropdown: false,
@@ -42,7 +41,6 @@ exports.Menus = [
                 name: 'Twice!',
                 href: '#Dropdown/Twice!',
                 template: 'Dropdown/Twice!/template',
-                requireJs: true,
                 extra: {
                     'KNOCK KNOCK': '8A2t_tAjMz8',
                     'TT': 'ePpPVE-GGJw',
@@ -52,4 +50,3 @@ exports.Menus = [
         ]
     }
 ];
-//# sourceMappingURL=menu.js.map

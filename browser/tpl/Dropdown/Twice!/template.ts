@@ -1,5 +1,3 @@
-import { $ } from '../../../lib/lib';
-
 export default (data: any) => {
 
     $('#Twice [data-toggle="tab"]').on('shown.bs.tab', (event) => {
