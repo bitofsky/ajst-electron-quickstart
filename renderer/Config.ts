@@ -1,5 +1,7 @@
 
-export const debugLog = true;
+export const isDev = process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath);
+export const debugLog = isDev ? true : false;
+export const enableDebugToolButton = true;
 export const DefaultRoute = 'ClickMenu/EntityList';
 export const Menus: Menu[] = [
     {

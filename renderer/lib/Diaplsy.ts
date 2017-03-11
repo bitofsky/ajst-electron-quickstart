@@ -1,7 +1,9 @@
 import { TPL, close, maximize, minimize, toggleDevtools } from './Lib';
-import { Menus, DefaultRoute, getMenuFromPath, debugLog } from '../Config';
+import * as Config from '../Config';
 import * as fs from 'fs';
 import * as path from 'path';
+
+const { Menus, DefaultRoute, getMenuFromPath, debugLog } = Config;
 
 /**
  * Document Body initialize
@@ -22,7 +24,7 @@ export const Body = async () => {
  */
 export const TopNavigation = async () => {
 
-    await TPL('TopNavigation', 'TopNavigation/template', Menus);
+    await TPL('TopNavigation', 'TopNavigation/template', Config);
 
     // window control button's event
     $('BODY').off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {

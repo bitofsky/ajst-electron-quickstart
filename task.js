@@ -39,7 +39,7 @@ const ipcElectronConnect = (message) => {
     });
 };
 const ipcElectronSend = (message) => oIpcElectron ? oIpcElectron.emit('message', message) : ipcElectronConnect(message);
-exports.electronStart = (enableElectron, enableWatch) => new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+exports.task = (enableElectron, enableWatch) => new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
     try {
         const execute = () => buildTsc(project);
         const { spawn } = require('child_process');
@@ -67,5 +67,5 @@ const exit = (err) => {
     err && console.error(err);
     process.exit();
 };
-exports.electronStart(enableElectron, enableWatch).then(() => exit()).catch(exit);
-//# sourceMappingURL=build.js.map
+exports.task(enableElectron, enableWatch).then(() => exit()).catch(exit);
+//# sourceMappingURL=task.js.map

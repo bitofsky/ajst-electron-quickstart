@@ -44,7 +44,7 @@ const ipcElectronConnect = (message: string) => {
 const ipcElectronSend = (message: string) =>
     oIpcElectron ? oIpcElectron.emit('message', message) : ipcElectronConnect(message);
 
-export const electronStart = (enableElectron: boolean, enableWatch: boolean) => new Promise(async (resolve, reject) => {
+export const task = (enableElectron: boolean, enableWatch: boolean) => new Promise(async (resolve, reject) => {
 
     try {
 
@@ -81,4 +81,4 @@ const exit = (err?: Error) => {
     process.exit();
 };
 
-electronStart(enableElectron, enableWatch).then(() => exit()).catch(exit);
+task(enableElectron, enableWatch).then(() => exit()).catch(exit);

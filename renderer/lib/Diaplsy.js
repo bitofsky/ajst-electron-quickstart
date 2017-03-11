@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Lib_1 = require("./Lib");
-const Config_1 = require("../Config");
+const Config = require("../Config");
 const fs = require("fs");
 const path = require("path");
+const { Menus, DefaultRoute, getMenuFromPath, debugLog } = Config;
 /**
  * Document Body initialize
  */
@@ -22,13 +23,13 @@ exports.Body = () => __awaiter(this, void 0, void 0, function* () {
     if (location.hash)
         $(window).trigger('hashchange');
     else
-        location.hash = Config_1.DefaultRoute;
+        location.hash = DefaultRoute;
 });
 /**
  * TopNavigation reder
  */
 exports.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
-    yield Lib_1.TPL('TopNavigation', 'TopNavigation/template', Config_1.Menus);
+    yield Lib_1.TPL('TopNavigation', 'TopNavigation/template', Config);
     // window control button's event
     $('BODY').off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {
         const $target = $(this);
@@ -49,8 +50,8 @@ const MainContainer = (Menu) => __awaiter(this, void 0, void 0, function* () {
     if (Menu.template && fs.existsSync(`${Root}/${Menu.template}.html`))
         yield Lib_1.TPL('MainContainer', Menu.template, Menu, { importJs: Menu.importJs });
     else if (Menu.template)
-        Config_1.debugLog && console.error(`MainContainer - Menu Template file not found`, tplPath);
-    Config_1.debugLog && console.log('MainContainer', 'tplPath', tplPath, '\nMenu', Menu);
+        debugLog && console.error(`MainContainer - Menu Template file not found`, tplPath);
+    debugLog && console.log('MainContainer', 'tplPath', tplPath, '\nMenu', Menu);
 });
 /**
  * onHashChange가 발생하면 PageHeader / MainContainer를 다시 랜더링 한다.
@@ -58,7 +59,7 @@ const MainContainer = (Menu) => __awaiter(this, void 0, void 0, function* () {
 exports.onHashChange = () => __awaiter(this, void 0, void 0, function* () {
     try {
         const currentPath = location.hash.replace(/^#/, '');
-        const { Menu, Parent } = Config_1.getMenuFromPath(currentPath);
+        const { Menu, Parent } = getMenuFromPath(currentPath);
         yield Promise.all([
             PageHeader(Parent),
             MainContainer(Menu) // render MainContainer

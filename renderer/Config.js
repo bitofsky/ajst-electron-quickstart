@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.debugLog = true;
+exports.isDev = process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath);
+exports.debugLog = exports.isDev ? true : false;
+exports.enableDebugToolButton = true;
 exports.DefaultRoute = 'ClickMenu/EntityList';
 exports.Menus = [
     {

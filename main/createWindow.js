@@ -44,7 +44,6 @@ const setWindowTop = (win) => {
 };
 const isDevInit = (win) => {
     ipcStart();
-    win.webContents.openDevTools();
 };
 const ipcStart = () => {
     const ipc = require('node-ipc');

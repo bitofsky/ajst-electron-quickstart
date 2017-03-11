@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Debug watch",
-            "program": "${workspaceRoot}/build.js",
+            "program": "${workspaceRoot}/task.js",
             "cwd": "${workspaceRoot}",
             "args": [
                 "run",

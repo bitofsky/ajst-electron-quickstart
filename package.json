@@ -1,20 +1,24 @@
 {
   "name": "ajst-electron-quickstart",
-  "dependencies": {},
-  "main": "electron.js",
+  "main": "run.js",
   "scripts": {
     "start": "node ./node_modules/electron/cli.js run.js",
-    "build": "./node_modules/.bin/tsc -p .",
-    "install": "npm run build && code ."
+    "compile": "node task",
+    "install": "npm run compile && code .",
+    "build-ia32": "build --win --ia32",
+    "build": "npm run compile && npm run build-ia32"
   },
-  "devDependencies": {
-    "@types/electron": "^1.4.33",
+  "dependencies": {
     "@types/jquery": "^2.0.40",
     "ajst": "^1.6.18",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
-    "winstrap": "^0.5.11",
+    "winstrap": "^0.5.11"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.4.33",
     "electron": "<1.6.0",
+    "electron-builder": "^15.3.0",
     "node-ipc": "^8.10.3",
     "typescript": "^2.2.1",
     "watch-glob": "^0.1.3"
@@ -29,5 +33,6 @@
   "ipc": {
     "appspace": "ajst-electron-quickstart:",
     "id": "autoreload"
-  }
+  },
+  "author": "ajst-electron-quickstart"
 }

@@ -46,6 +46,7 @@ export const flushCaches = () => AJST.flushCaches();
 // win controls
 const getBrowserWindow = () => remote.BrowserWindow.getFocusedWindow();
 export const close = () => getBrowserWindow().close();
+export const openDevTools = () => getBrowserWindow().webContents.openDevTools();
 export const toggleDevtools = () => getBrowserWindow().webContents.toggleDevTools();
 export const minimize = () => getBrowserWindow().minimize();
 export const maximize = () => {

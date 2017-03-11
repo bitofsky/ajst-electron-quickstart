@@ -41,6 +41,7 @@ exports.flushCaches = () => AJST.flushCaches();
 // win controls
 const getBrowserWindow = () => electron_1.remote.BrowserWindow.getFocusedWindow();
 exports.close = () => getBrowserWindow().close();
+exports.openDevTools = () => getBrowserWindow().webContents.openDevTools();
 exports.toggleDevtools = () => getBrowserWindow().webContents.toggleDevTools();
 exports.minimize = () => getBrowserWindow().minimize();
 exports.maximize = () => {
