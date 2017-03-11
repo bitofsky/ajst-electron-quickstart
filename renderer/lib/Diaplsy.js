@@ -19,7 +19,10 @@ exports.Body = () => __awaiter(this, void 0, void 0, function* () {
     yield Promise.all([
         exports.TopNavigation()
     ]);
-    location.hash = Config_1.DefaultRoute;
+    if (location.hash)
+        $(window).trigger('hashchange');
+    else
+        location.hash = Config_1.DefaultRoute;
 });
 /**
  * TopNavigation reder

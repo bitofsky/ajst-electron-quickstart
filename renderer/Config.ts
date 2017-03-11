@@ -1,9 +1,7 @@
 
 export const debugLog = true;
-
 export const DefaultRoute = 'ClickMenu/EntityList';
-
-const Menus: Menu[] = [
+export const Menus: Menu[] = [
     {
         name: 'ClickMenu',
         dropdown: false,
@@ -42,22 +40,18 @@ const Menus: Menu[] = [
             }
         ]
     }
-];
-
-/**
- * Menus normalize
- */
-Menus.forEach(Parent => {
-    Parent.template = Parent.template || `MainContainer/${Parent.name}`;
-    Parent.href = Parent.href || `#${Parent.name}`;
-    Parent.children && Parent.children.forEach(Child => {
-        Child.template = Child.template || `MainContainer/${Parent.name}/${Child.name}`;
-        Child.href = Child.href || `#${Parent.name}/${Child.name}`;
+].map((Menu: Menu) => {
+    Menu.template = Menu.template || `MainContainer/${Menu.name}`;
+    Menu.href = Menu.href || `#${Menu.name}`;
+    Menu.children && Menu.children.forEach(Child => {
+        Child.template = Child.template || `MainContainer/${Menu.name}/${Child.name}`;
+        Child.href = Child.href || `#${Menu.name}/${Child.name}`;
     });
+    return Menu;
 });
 
 /**
- * Hash Path로부터 Menu를 반환한다.
+ * Hash Path로부터 현재 Menu를 반환한다.
  */
 export const getMenuFromPath = (currentPath: string) => {
 
@@ -72,5 +66,3 @@ export const getMenuFromPath = (currentPath: string) => {
 
     return { Parent, Menu };
 };
-
-export { Menus };

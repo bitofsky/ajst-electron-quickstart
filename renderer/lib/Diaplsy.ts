@@ -12,7 +12,8 @@ export const Body = async () => {
         TopNavigation()
     ]);
 
-    location.hash = DefaultRoute;
+    if (location.hash) $(window).trigger('hashchange');
+    else location.hash = DefaultRoute;
 
 };
 
