@@ -95,7 +95,7 @@ const onResize = () => {
         resizeTimeout = undefined;
     }, 100);
 
-}
+};
 
 $window
     .off('hashchange').on('hashchange', onHashChange)
