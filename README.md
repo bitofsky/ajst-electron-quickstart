@@ -14,7 +14,7 @@ npm install
 # VS Code will start (press F5)
 ```
 
-## This quick start includes:
+## Includes :
 - AJST 1.6.18
 - Electron 1.5.2 (VS Code debugger has problem in >1.6.0)
 - jQuery 3.1.1
