@@ -9,7 +9,6 @@
     "build": "npm run compile && npm run build-ia32"
   },
   "dependencies": {
-    "@types/jquery": "^2.0.40",
     "ajst": "^1.6.18",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
@@ -17,6 +16,7 @@
   },
   "devDependencies": {
     "@types/electron": "^1.4.33",
+    "@types/jquery": "^2.0.40",
     "electron": "<1.6.0",
     "electron-builder": "^15.3.0",
     "node-ipc": "^8.10.3",
