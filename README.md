@@ -2,7 +2,7 @@
 
 ## To Use
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this repository you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) and [VS Code](https://code.visualstudio.com/) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
@@ -22,6 +22,12 @@ npm install
 - Winstrap 0.5.11
 
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/).
+
+## Build
+```bash
+# Win32 Application
+npm run build-ia32
+```
 
 ## License
 [MIT](LICENSE.md)
