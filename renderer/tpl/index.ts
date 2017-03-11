@@ -1,15 +1,4 @@
-import { flushCaches } from '../lib/Lib';
 import { Body, MainContainer } from '../lib/Container';
-
-flushCaches(); // ajst re-init cache
-
-// delete browser/** 's require.cache
-Object.keys(require.cache).filter(s => s.includes(Root)).forEach(path => {
-    delete require.cache[require.resolve(path)];
-});
-
-// for Electron main <-> browser executeJavaScript()
-window.initBody = () => require('./init'); // require self
 
 const $window = $(window);
 const $TopNavigation = $('TopNavigation');

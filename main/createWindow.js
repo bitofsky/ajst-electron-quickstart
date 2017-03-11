@@ -56,7 +56,7 @@ const ipcStart = () => {
         ipc.server.on('message', (data, socket) => __awaiter(this, void 0, void 0, function* () {
             //win && data === 'tsc:build' && win.webContents.reload();
             if (win && data === 'tsc:build') {
-                yield win.webContents.executeJavaScript('initBody()', true);
+                yield win.webContents.reloadIgnoringCache();
                 console.log('Electron win.webContents.reload()');
                 setWindowTop(win);
             }

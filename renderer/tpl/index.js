@@ -1,14 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Lib_1 = require("../lib/Lib");
 const Container_1 = require("../lib/Container");
-Lib_1.flushCaches(); // ajst re-init cache
-// delete browser/** 's require.cache
-Object.keys(require.cache).filter(s => s.includes(Root)).forEach(path => {
-    delete require.cache[require.resolve(path)];
-});
-// for Electron main <-> browser executeJavaScript()
-window.initBody = () => require('./init'); // require self
 const $window = $(window);
 const $TopNavigation = $('TopNavigation');
 const $MainContainer = $('MainContainer');
