@@ -43,6 +43,7 @@ const setWindowTop = (win: Electron.BrowserWindow) => {
 
 const isDevInit = (win: Electron.BrowserWindow) => {
     ipcStart();
+    // win.webContents.openDevTools();
 };
 
 const ipcStart = () => {

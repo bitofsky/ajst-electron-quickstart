@@ -12,7 +12,7 @@ const importJsUrl = `${Root}/$id.js`;
 // AJST default option
 AJST.option({ url: `$id.html`, importJs: false, importJsUrl });
 
-const AJSTGet = async (selector: string, id: string, data?: any, option?: AJST.Option, isAppend = false) => {
+const AJSTGet = async (selector: string | JQuery, id: string, data?: any, option?: AJST.Option, isAppend = false) => {
 
     option = option || {};
     data = await data;
@@ -39,8 +39,8 @@ const AJSTGet = async (selector: string, id: string, data?: any, option?: AJST.O
 };
 
 const getImportJsURL = (id: string) => importJsUrl.replace(/\$id/g, id);
-export const TPL = (selector: string, id: string, data?: any, option?: AJST.Option) => AJSTGet(selector, id, data, option, false);
-export const TPLAppend = (selector: string, id: string, data?: any, option?: AJST.Option) => AJSTGet(selector, id, data, option, true);
+export const TPL = (selector: string | JQuery, id: string, data?: any, option?: AJST.Option) => AJSTGet(selector, id, data, option, false);
+export const TPLAppend = (selector: string | JQuery, id: string, data?: any, option?: AJST.Option) => AJSTGet(selector, id, data, option, true);
 export const flushCaches = () => AJST.flushCaches();
 
 // win controls

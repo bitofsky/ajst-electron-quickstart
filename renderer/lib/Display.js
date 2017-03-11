@@ -12,7 +12,12 @@ const Lib_1 = require("./Lib");
 const Config = require("../Config");
 const fs = require("fs");
 const path = require("path");
-const { Menus, DefaultRoute, getMenuFromPath, debugLog } = Config;
+const { DefaultRoute, getMenuFromPath, debugLog } = Config;
+const $window = $(window);
+const $body = $('body');
+const $TopNavigation = $('TopNavigation');
+const $PageHeader = $('PageHeader');
+const $MainContainer = $('MainContainer');
 /**
  * Document Body initialize
  */
@@ -21,7 +26,7 @@ exports.Body = () => __awaiter(this, void 0, void 0, function* () {
         exports.TopNavigation()
     ]);
     if (location.hash)
-        $(window).trigger('hashchange');
+        $window.trigger('hashchange');
     else
         location.hash = DefaultRoute;
 });
@@ -31,7 +36,7 @@ exports.Body = () => __awaiter(this, void 0, void 0, function* () {
 exports.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
     yield Lib_1.TPL('TopNavigation', 'TopNavigation/template', Config);
     // window control button's event
-    $('BODY').off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {
+    $body.off('.TopNavigation').on('click.TopNavigation', 'TopNavigation .window-controls A', function ({ target }) {
         const $target = $(this);
         switch (true) {
             case $target.hasClass('close'): return Lib_1.close();
@@ -41,14 +46,14 @@ exports.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
         }
     });
 });
-const PageHeader = (Menu) => Lib_1.TPL('PageHeader', 'PageHeader/template', Menu); // Page Header loading
+const PageHeader = (Menu) => Lib_1.TPL($PageHeader, 'PageHeader/template', Menu); // Page Header loading
 /**
  * MainContainer render
  */
 const MainContainer = (Menu) => __awaiter(this, void 0, void 0, function* () {
     const tplPath = path.resolve(Root, Menu.template + '.html');
     if (Menu.template && fs.existsSync(`${Root}/${Menu.template}.html`))
-        yield Lib_1.TPL('MainContainer', Menu.template, Menu, { importJs: Menu.importJs });
+        yield Lib_1.TPL($MainContainer, Menu.template, Menu, { importJs: Menu.importJs });
     else if (Menu.template)
         debugLog && console.error(`MainContainer - Menu Template file not found`, tplPath);
     debugLog && console.log('MainContainer', 'tplPath', tplPath, '\nMenu', Menu);
@@ -56,7 +61,7 @@ const MainContainer = (Menu) => __awaiter(this, void 0, void 0, function* () {
 /**
  * onHashChange가 발생하면 PageHeader / MainContainer를 다시 랜더링 한다.
  */
-exports.onHashChange = () => __awaiter(this, void 0, void 0, function* () {
+const onHashChange = () => __awaiter(this, void 0, void 0, function* () {
     try {
         const currentPath = location.hash.replace(/^#/, '');
         const { Menu, Parent } = getMenuFromPath(currentPath);
@@ -69,4 +74,17 @@ exports.onHashChange = () => __awaiter(this, void 0, void 0, function* () {
         console.error(e);
     }
 });
-//# sourceMappingURL=Diaplsy.js.map
+// Bootstrap bug? : position: fixed; 로 탑네비를 고정시키면 특정 버튼 클릭시에 --webkit-app-region이 엉뚱한데로 셋팅되는 오류가 있어 MainContainer를 resize하는 방법으로 바꾼다.
+let resizeTimeout; // 마지막 리사이즈 시점으로부터 100ms 후 MainContainer.height를 변경
+const onResize = () => {
+    if (resizeTimeout)
+        clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        $MainContainer.height($window.height() - $TopNavigation.height() - $PageHeader.height());
+        resizeTimeout = undefined;
+    }, 100);
+};
+$window
+    .off('hashchange').on('hashchange', onHashChange)
+    .off('resize').on('resize', onResize);
+//# sourceMappingURL=Display.js.map

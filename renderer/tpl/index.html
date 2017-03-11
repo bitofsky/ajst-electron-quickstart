@@ -33,4 +33,6 @@
 </body>
 
 </html>
-<script>require('./index.js');</script>
+<script>
+try{ require('../lib/Display.js').Body(); }catch(e) { alert(e.message || e); }
+</script>
