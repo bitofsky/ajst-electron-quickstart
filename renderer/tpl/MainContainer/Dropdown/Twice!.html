@@ -1,4 +1,4 @@
-<? const {Menu, Sub} = data; ?>
+<? const { extra } = data; ?>
 <div class="container" id="Twice">
 
     <section class="section">
@@ -10,13 +10,13 @@
 
         <div class="row">
             <ul class="nav nav-tabs">
-                <?Object.entries(Sub.extra).forEach(([title, youtube]) => {?>
-                    <li><a data-toggle="tab" data-target="#<?=youtube?>" data-youtube="<?=youtube?>"><?=title?></a></li>
+                <?Object.entries(extra).forEach(([title, youtube]) => {?>
+                    <li><a href="#<?=youtube?>" data-toggle="tab" data-youtube="<?=youtube?>"><?=title?></a></li>
                 <?});?>
             </ul>
 
             <div class="tab-content">
-                <?Object.entries(Sub.extra).forEach(([title, youtube]) => {?>
+                <?Object.entries(extra).forEach(([title, youtube]) => {?>
                     <div class="tab-pane fluidMedia" id="<?=youtube?>"></div>
                 <?});?>
             </div>

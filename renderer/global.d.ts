@@ -1,6 +1,7 @@
 /**
  * Config.ts
  */
+type getterHref = () => string;
 interface Menu {
     name: string;
     html?: string;
@@ -9,9 +10,8 @@ interface Menu {
     children?: Menu[];
     template?: string;
     importJs?: boolean;
-    requireJs?: boolean;
     dropdown?: boolean;
-    click?: () => Promise<false> | false | void;
+    dropdownHide?: boolean;
     extra?: any;
 }
 

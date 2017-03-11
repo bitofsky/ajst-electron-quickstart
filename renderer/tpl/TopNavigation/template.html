@@ -49,16 +49,16 @@ const rightMenus = Menus.filter(({right}) => !!right);
 
 <script id="TopNavigation/template.Menu" type="template">
 <? const {name, html, href} = data; ?>
-<li><a href="<?=href ? href : 'javascript:void();'?>" role="button"><?=html || name?></a></li>
+<li><a href="<?=href?>" role="button"><?=html || name?></a></li>
 </script>
 
 <script id="TopNavigation/template.Menu.dropdown" type="template">
-<? const {name, html, href, children} = data; ?>
+<? const {name, html, href, children, dropdownHide} = data; ?>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?=html || name?><i class="glyph glyph-chevron-down-2"></i></a>
     <ul class="dropdown-menu" role="menu">
 
-        <?=href ? `<li><a href="${href}">${html || name}</a></li><li class="divider"></li>` : ''?>
+        <?=(!dropdownHide && href) ? `<li><a href="${href}">${html || name}</a></li><li class="divider"></li>` : ''?>
 
         <? (children||[]).forEach(Sub => include('TopNavigation/template.Menu.Sub', Sub)) ?>
 

@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const Lib_1 = require("./Lib");
 const Config_1 = require("../Config");
+const fs = require("fs");
+const path = require("path");
 /**
  * Document Body initialize
  */
@@ -17,7 +19,7 @@ exports.Body = () => __awaiter(this, void 0, void 0, function* () {
     yield Promise.all([
         exports.TopNavigation()
     ]);
-    yield exports.MainContainer(location.hash.replace(/^#/, ''));
+    location.hash = Config_1.DefaultRoute;
 });
 /**
  * TopNavigation reder
@@ -35,20 +37,32 @@ exports.TopNavigation = () => __awaiter(this, void 0, void 0, function* () {
         }
     });
 });
+const PageHeader = (Menu) => Lib_1.TPL('PageHeader', 'PageHeader/template', Menu); // Page Header loading
 /**
- * MainContainer reder
+ * MainContainer render
  */
-exports.MainContainer = (containerPath) => __awaiter(this, void 0, void 0, function* () {
-    containerPath = containerPath || Config_1.DefaultRoute;
-    const [sMenu, sSub] = containerPath.split('/');
-    const Menu = Config_1.Menus.find(({ name }) => name === sMenu);
-    if (!Menu)
-        return false; // invalid menu
-    const Sub = !Menu.children ? null : Menu.children.find(({ name }) => name === sSub);
-    yield Lib_1.TPL('MainContainer', 'PageHeader/template', { Menu, Sub }); // Page Header loading
-    if (Menu.template)
-        yield Lib_1.TPLAppend('MainContainer', Menu.template, { Menu, Sub }, { importJs: Menu.importJs });
-    else if (Sub && Sub.template)
-        yield Lib_1.TPLAppend('MainContainer', Sub.template, { Menu, Sub }, { importJs: Sub.importJs });
+const MainContainer = (Menu) => __awaiter(this, void 0, void 0, function* () {
+    const tplPath = path.resolve(Root, Menu.template + '.html');
+    if (Menu.template && fs.existsSync(`${Root}/${Menu.template}.html`))
+        yield Lib_1.TPL('MainContainer', Menu.template, Menu, { importJs: Menu.importJs });
+    else if (Menu.template)
+        Config_1.debugLog && console.error(`MainContainer - Menu Template file not found`, tplPath);
+    Config_1.debugLog && console.log('MainContainer', 'tplPath', tplPath, '\nMenu', Menu);
 });
-//# sourceMappingURL=Container.js.map
+/**
+ * onHashChange가 발생하면 PageHeader / MainContainer를 다시 랜더링 한다.
+ */
+exports.onHashChange = () => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const currentPath = location.hash.replace(/^#/, '');
+        const { Menu, Parent } = Config_1.getMenuFromPath(currentPath);
+        yield Promise.all([
+            PageHeader(Parent),
+            MainContainer(Menu) // render MainContainer
+        ]);
+    }
+    catch (e) {
+        console.error(e);
+    }
+});
+//# sourceMappingURL=Diaplsy.js.map

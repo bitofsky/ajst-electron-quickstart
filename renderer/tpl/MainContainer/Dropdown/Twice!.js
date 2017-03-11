@@ -8,4 +8,4 @@ exports.default = (data) => {
     });
     $('#Twice [data-toggle="tab"]:first').tab('show');
 };
-//# sourceMappingURL=template.js.map
+//# sourceMappingURL=Twice!.js.map
