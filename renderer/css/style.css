@@ -22,6 +22,10 @@ BODY {
     overflow: hidden;
 }
 
+TopNavigation, MainContainer, PageHeader {
+    display: block;
+}
+
 TopNavigation > .navbar {
     -webkit-app-region: drag;
 }
