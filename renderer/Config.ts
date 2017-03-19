@@ -40,16 +40,17 @@ export const Menus: Menu[] = [
                     'CHEER UP': 'c7rCyll5AeY'
                 }
             }
-        ]
+        ],
     }
-].map((Menu: Menu) => {
+];
+
+Menus.forEach((Menu: Menu) => {
     Menu.template = Menu.template || `MainContainer/${Menu.name}`;
     Menu.href = Menu.href || `#${Menu.name}`;
     Menu.children && Menu.children.forEach(Child => {
         Child.template = Child.template || `MainContainer/${Menu.name}/${Child.name}`;
         Child.href = Child.href || `#${Menu.name}/${Child.name}`;
     });
-    return Menu;
 });
 
 /**
