@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es2016", // for electron 1.5.x
         "module": "none",
-        "moduleResolution": "classic",
+        "moduleResolution": "node",
         "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,

@@ -41,16 +41,16 @@ exports.Menus = [
                     'CHEER UP': 'c7rCyll5AeY'
                 }
             }
-        ]
+        ],
     }
-].map((Menu) => {
+];
+exports.Menus.forEach((Menu) => {
     Menu.template = Menu.template || `MainContainer/${Menu.name}`;
     Menu.href = Menu.href || `#${Menu.name}`;
     Menu.children && Menu.children.forEach(Child => {
         Child.template = Child.template || `MainContainer/${Menu.name}/${Child.name}`;
         Child.href = Child.href || `#${Menu.name}/${Child.name}`;
     });
-    return Menu;
 });
 /**
  * Hash Path로부터 현재 Menu를 반환한다.
