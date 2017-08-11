@@ -2,10 +2,10 @@
   "name": "ajst-electron-quickstart",
   "main": "run.js",
   "scripts": {
-    "start": "node ./node_modules/electron/cli.js run.js",
-    "compile": "node task",
+    "start": "./node_modules/.bin/electron run.js",
+    "compile": "./node_modules/.bin/tsc -p .",
     "install": "npm run compile && code .",
-    "build-ia32": "build --win --ia32",
+    "build-ia32": "./node_modules/.bin/build --win --ia32",
     "build": "npm run compile && npm run build-ia32"
   },
   "dependencies": {
@@ -15,12 +15,10 @@
     "winstrap": "^0.5.11"
   },
   "devDependencies": {
-    "@types/electron": "^1.4.33",
     "@types/jquery": "^2.0.40",
-    "electron": "<1.6.0",
+    "electron": "^1.7.5",
     "electron-builder": "^15.3.0",
-    "node-ipc": "^8.10.3",
-    "typescript": "^2.2.1",
+    "typescript": "^2.4.0",
     "watch-glob": "^0.1.3"
   },
   "description": "AJST + Electron Quickstart",

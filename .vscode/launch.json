@@ -7,14 +7,16 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug watch",
-            "program": "${workspaceRoot}/task.js",
+            "name": "Electron Main",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "program": "${workspaceRoot}/run.js",
             "cwd": "${workspaceRoot}",
-            "args": [
-                "run",
-                "watch"
-            ],
-            "port": 5858
+            "protocol": "inspector",
+            "preLaunchTask": "tsc",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "node_modules/**/*.js"
+            ]
         }
     ]
 }

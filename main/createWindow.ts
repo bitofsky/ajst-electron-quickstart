@@ -1,6 +1,7 @@
 import { BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import { watch } from './sourceMonitor';
 
 const isDev = process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath);
 
@@ -42,27 +43,10 @@ const setWindowTop = (win: Electron.BrowserWindow) => {
 };
 
 const isDevInit = (win: Electron.BrowserWindow) => {
-    ipcStart();
-    // win.webContents.openDevTools();
-};
-
-const ipcStart = () => {
-
-    const ipc = require('node-ipc');
-    ipc.config.appspace = require('../package.json').ipc.appspace;
-    ipc.config.id = require('../package.json').ipc.id;
-    ipc.config.silent = true;
-    ipc.serve(() => {
-        console.error(`Electron AutoReload : IPC ready : ${ipc.server.path}`);
-        ipc.server.on('message', async (data: string, socket: any) => { // reload
-            //win && data === 'tsc:build' && win.webContents.reload();
-            if (win && data === 'tsc:build') {
-                await win.webContents.reloadIgnoringCache();
-                console.log('Electron win.webContents.reload()');
-                setWindowTop(win);
-            }
-        });
+    watch(async () => {
+        await win.webContents.reloadIgnoringCache();
+        console.log('Electron win.webContents.reload()');
+        setWindowTop(win);
     });
-    ipc.server.start();
-
+    // win.webContents.openDevTools();
 };

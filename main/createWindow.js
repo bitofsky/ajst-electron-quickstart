@@ -11,6 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path = require("path");
 const url = require("url");
+const sourceMonitor_1 = require("./sourceMonitor");
 const isDev = process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath);
 let win;
 /**
@@ -43,25 +44,11 @@ const setWindowTop = (win) => {
     win.blur();
 };
 const isDevInit = (win) => {
-    ipcStart();
+    sourceMonitor_1.watch(() => __awaiter(this, void 0, void 0, function* () {
+        yield win.webContents.reloadIgnoringCache();
+        console.log('Electron win.webContents.reload()');
+        setWindowTop(win);
+    }));
     // win.webContents.openDevTools();
-};
-const ipcStart = () => {
-    const ipc = require('node-ipc');
-    ipc.config.appspace = require('../package.json').ipc.appspace;
-    ipc.config.id = require('../package.json').ipc.id;
-    ipc.config.silent = true;
-    ipc.serve(() => {
-        console.error(`Electron AutoReload : IPC ready : ${ipc.server.path}`);
-        ipc.server.on('message', (data, socket) => __awaiter(this, void 0, void 0, function* () {
-            //win && data === 'tsc:build' && win.webContents.reload();
-            if (win && data === 'tsc:build') {
-                yield win.webContents.reloadIgnoringCache();
-                console.log('Electron win.webContents.reload()');
-                setWindowTop(win);
-            }
-        }));
-    });
-    ipc.server.start();
 };
 //# sourceMappingURL=createWindow.js.map
