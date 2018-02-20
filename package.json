@@ -9,16 +9,16 @@
     "build": "npm run compile && npm run build-ia32"
   },
   "dependencies": {
-    "ajst": "^1.6.18",
+    "ajst": "^1.6.20",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
     "winstrap": "^0.5.11"
   },
   "devDependencies": {
     "@types/jquery": "^2.0.40",
-    "electron": "^1.7.5",
+    "electron": "^1.8.0",
     "electron-builder": "^15.3.0",
-    "typescript": "^2.4.0",
+    "typescript": "^2.7.0",
     "watch-glob": "^0.1.3"
   },
   "description": "AJST + Electron Quickstart",
@@ -27,7 +27,7 @@
     "url": "https://github.com/bitofsky/ajst-electron-quickstart"
   },
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "ipc": {
     "appspace": "ajst-electron-quickstart:",
     "id": "autoreload"
